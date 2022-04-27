@@ -1,0 +1,8 @@
+{
+  "name": "Among Us Live",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "6e03001d"
+}
