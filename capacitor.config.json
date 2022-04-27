@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "Among Us Live",
-	"webDir": "www",
-	"bundledWebRuntime": false
+  "appId": "io.ionic.starter",
+  "appName": "Among Us Live",
+  "webDir": "website/www",
+  "bundledWebRuntime": false
 }
