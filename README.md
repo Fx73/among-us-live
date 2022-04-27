@@ -1,5 +1,3 @@
-# among-us-live
-
 <h1>Among Us Live</h1>
 
 ![icon](./resources/ic_banner.png?raw=true)
