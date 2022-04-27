@@ -1,0 +1,62 @@
+<ion-content>
+	<ion-card>
+		<ion-img src="assets/homeImg.jpg"></ion-img>
+	</ion-card>
+	<ion-card>
+		<ion-accordion-group>
+			<ion-accordion>
+				<ion-item slot="header">
+					<ion-label>{{stringJoinGame}}</ion-label>
+				</ion-item>
+
+				<ion-item class="accordion-item"
+					slot="content">
+					<ion-item>
+						<ion-label position="stacked">{{stringEnterCode}}</ion-label>
+						<ion-input (ionChange)="refreshCode($event)"></ion-input>
+					</ion-item>
+
+					<ion-button (click)="joinGame()"
+						size="large"
+						expand="block"
+						color="primary">
+						{{stringJoin}}
+					</ion-button>
+				</ion-item>
+
+			</ion-accordion>
+		</ion-accordion-group>
+	</ion-card>
+	<ion-card>
+		<ion-accordion-group>
+			<ion-accordion>
+				<ion-item slot="header">
+					<ion-label>
+						{{stringCreateGame}}
+					</ion-label>
+				</ion-item>
+
+				<ion-item class="accordion-item"
+					slot="content">
+					<ion-grid>
+						<ion-row>
+							<ion-card>
+								<app-game-settings></app-game-settings>
+							</ion-card>
+						</ion-row>
+
+						<ion-row>
+							<ion-button (click)="createGame()"
+								size="large"
+								expand="block"
+								color="primary">
+								{{stringCreate}}
+							</ion-button>
+						</ion-row>
+					</ion-grid>
+				</ion-item>
+
+			</ion-accordion>
+		</ion-accordion-group>
+	</ion-card>
+</ion-content>
