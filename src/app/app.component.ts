@@ -7,6 +7,8 @@ import { stringEN } from 'src/strings';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  static inGame = false;
+
   // Strings
   menuTitle = stringEN['menu.title'];
 
@@ -20,11 +22,14 @@ export class AppComponent {
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
 
-  inGame = false;
 
   constructor() { }
 
   getUser(): string {
     return 'User';
+  }
+
+  isInGame(): boolean {
+    return AppComponent.inGame;
   }
 }

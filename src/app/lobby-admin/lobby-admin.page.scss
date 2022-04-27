@@ -1,0 +1,22 @@
+.gameCode{
+  margin: 2em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #8d8d8d;
+  text-align: center;
+
+  ion-label{
+    font-size: 1.6em;
+    height: auto;
+    vertical-align: middle;
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  ion-button{
+    margin-left: 1em;
+    margin-right: 1em;
+    vertical-align: middle;
+    height: 2.6em
+  }
+}

@@ -1,6 +1,6 @@
 <ion-app>
 	<ion-split-pane contentId="main-content">
-		<ion-menu *ngIf="inGame"
+		<ion-menu *ngIf="isInGame()"
 			contentId="main-content"
 			type="overlay">
 			<ion-content>
@@ -25,9 +25,14 @@
 
 
 
+
+
 			</ion-content>
 		</ion-menu>
-		<ion-router-outlet id="main-content"></ion-router-outlet>
+		<ion-router-outlet (gameEvent)="OK()"
+			id="main-content"></ion-router-outlet>
+
+
 
 
 

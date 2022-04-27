@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AppComponent } from './../app.component';
 import { Router } from '@angular/router';
 import { config } from 'src/config';
 import { stringEN } from 'src/strings';
@@ -10,6 +11,7 @@ import { stringEN } from 'src/strings';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+
 
 
   // Strings
@@ -25,6 +27,7 @@ export class HomePage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    AppComponent.inGame = false;
   }
 
 
@@ -34,12 +37,13 @@ export class HomePage implements OnInit {
   }
 
   joinGame() {
-    this.router.navigateByUrl('/Game/' + this.gameCode);
+    this.router.navigateByUrl('/Lobby/' + this.gameCode);
+
   }
 
 
   createGame() {
-    this.router.navigateByUrl('/Game/' + this.makeid());
+    this.router.navigateByUrl('/LobbyAdmin/' + this.makeid());
   }
 
 

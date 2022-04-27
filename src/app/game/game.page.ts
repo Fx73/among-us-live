@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-game',
@@ -14,6 +15,7 @@ export class GamePage implements OnInit {
 
   ngOnInit() {
     this.gameCode = this.activatedRoute.snapshot.paramMap.get('gameCode');
+    AppComponent.inGame = true;
   }
 
 }
