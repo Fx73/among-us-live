@@ -12,6 +12,7 @@ import { config } from 'src/config';
 })
 export class LobbyPage implements OnInit {
   gameCode: string;
+  ready = false;
 
   playerList: Array<{ name: string; ready: boolean }>;
   equipmentList: Array<{ name: string; ready: boolean }>;
@@ -29,6 +30,13 @@ export class LobbyPage implements OnInit {
     this.fakeInit();
   }
 
+  isAdmin(): boolean {
+    return this.admin;
+  }
+
+  isEveryoneReady(): boolean {
+    return this.playerList.every(player => player.ready) && this.equipmentList.every(player => player.ready);
+  }
 
   copyCodeToClipboard() {
     const el = document.createElement('textarea');
@@ -57,10 +65,14 @@ export class LobbyPage implements OnInit {
 
   }
 
+  launchGame() {
 
-  isAdmin(): boolean {
-    return this.admin;
   }
+
+  getReady() {
+    this.ready = !this.ready;
+  }
+
 
   makeid(): string {
     length = config.gameCodeLength;
@@ -72,4 +84,5 @@ export class LobbyPage implements OnInit {
     }
     return result;
   }
+
 }
