@@ -38,22 +38,14 @@
 
 				<ion-item class="accordion-item"
 					slot="content">
-					<ion-grid>
-						<ion-row>
-							<ion-card>
-								<app-game-settings></app-game-settings>
-							</ion-card>
-						</ion-row>
 
-						<ion-row>
-							<ion-button (click)="createGame()"
-								size="large"
-								expand="block"
-								color="primary">
-								{{stringCreate}}
-							</ion-button>
-						</ion-row>
-					</ion-grid>
+					<ion-button (click)="createGame()"
+						size="large"
+						expand="block"
+						color="primary">
+						{{stringCreate}}
+					</ion-button>
+
 				</ion-item>
 
 			</ion-accordion>

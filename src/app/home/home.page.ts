@@ -43,20 +43,11 @@ export class HomePage implements OnInit {
 
 
   createGame() {
-    this.router.navigateByUrl('/LobbyAdmin/' + this.makeid());
+    this.router.navigateByUrl('/Lobby');
   }
 
 
-  makeid(): string {
-    length = config.gameCodeLength;
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
+
 
 }
 

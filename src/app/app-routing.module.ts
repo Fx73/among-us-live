@@ -17,15 +17,13 @@ const routes: Routes = [
     loadChildren: () => import('./game/game.module').then(m => m.GamePageModule)
   },
   {
-    path: 'Lobby/:gameCode',
+    path: 'Lobby',
     loadChildren: () => import('./lobby/lobby.module').then(m => m.LobbyPageModule)
   },
   {
-    path: 'LobbyAdmin/:gameCode',
-    loadChildren: () => import('./lobby-admin/lobby-admin.module').then(m => m.LobbyAdminPageModule)
+    path: 'Lobby/:gameCode',
+    loadChildren: () => import('./lobby/lobby.module').then(m => m.LobbyPageModule)
   }
-
-
 
 
 ];
