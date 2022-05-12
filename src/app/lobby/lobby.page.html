@@ -70,7 +70,7 @@
   </ion-card>
 
   <ion-card *ngIf="isAdmin()" class="basecard">
-    <ion-button disabled="!isEveryoneReady()" (click)="launchGame()" size="large" expand="block" color="primary">
+    <ion-button [disabled]="!isEveryoneReady()" (click)="launchGame()" size="large" expand="block" color="primary">
       Launch Game !
     </ion-button>
   </ion-card>
