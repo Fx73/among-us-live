@@ -6,25 +6,21 @@
 
 <ion-content>
   <!-- Invitation Code -->
-  <ion-card class="basecard">
-    <ion-card-header>
-      <ion-card-title> Welcome to the game ! </ion-card-title>
-      <ion-card-subtitle>
-        Invite more people with your game code :
-      </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-card class="gameCode">
-        <ion-label color="secondary">{{gameCode}}</ion-label>
-        <ion-button (click)="copyCodeToClipboard()" color="secondary">
-          <ion-icon slot="icon-only" name="clipboard"></ion-icon>
-        </ion-button>
-      </ion-card>
-    </ion-card-content>
+  <ion-card class="paddCard">
+    <ion-card-title> Welcome to the game ! </ion-card-title>
+    <ion-card-subtitle>
+      Invite more people with your game code :
+    </ion-card-subtitle>
+    <ion-card class=" gameCode">
+      <ion-label color="secondary">{{gameCode}}</ion-label>
+      <ion-button (click)="copyCodeToClipboard()" color="secondary">
+        <ion-icon slot="icon-only" name="clipboard"></ion-icon>
+      </ion-button>
+    </ion-card>
   </ion-card>
 
-  <!-- Invitation Code -->
-  <ion-card class="basecard">
+  <!-- Player -->
+  <ion-card class="baseCard">
     <ion-card-header>
       <ion-card-title> Choose who you are ! </ion-card-title>
     </ion-card-header>
@@ -32,20 +28,20 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-            <ion-card class="nopaddingcard">
+            <ion-card class="baseCard">
               <ion-input [readonly]="isNameLocked" placeholder="Pick up your name !" [(ngModel)]="name"></ion-input>
               <ion-button [color]="isNameLocked?'secondary':'success'" (click)="validName()">
                 {{isNameLocked?'Change name':'Ok'}}
               </ion-button>
             </ion-card>
-            <ion-card class="nopaddingcard">
+            <ion-card class="baseCard">
               <ion-select placeholder="Color" interface="popover" [(ngModel)]="color">
                 <ion-select-option *ngFor="let c of colors" [value]="c">{{c}}</ion-select-option>
               </ion-select>
             </ion-card>
           </ion-col>
           <ion-col>
-            <ion-card class="basecard" *ngIf="color">
+            <ion-card class="baseCard" *ngIf="color">
               <ion-img src="assets/IDs/AmongUsID_{{color}}.png"></ion-img>
             </ion-card>
           </ion-col>
@@ -56,7 +52,7 @@
   </ion-card>
 
   <!-- Player List -->
-  <ion-card class="basecard">
+  <ion-card class="paddCard">
     <ion-card-title>Players</ion-card-title>
     <ion-list>
       <ion-item *ngFor="let item of playerList">
@@ -70,13 +66,12 @@
 
 
   <!-- Settings for admin -->
-  <ion-card *ngIf="isAdmin()" class="nopaddingcard">
+  <ion-card *ngIf="isAdmin()" class="baseCard">
     <ion-accordion-group>
       <ion-accordion>
         <ion-item slot="header">
-          <ion-label>Settings</ion-label>
+          <ion-label class="itemCenter">Settings</ion-label>
         </ion-item>
-
         <ion-item class="accordion-item" slot="content">
           <app-game-settings></app-game-settings>
         </ion-item>
@@ -85,11 +80,11 @@
   </ion-card>
 
   <!-- Qr code list -->
-  <ion-card *ngIf="isAdmin()" class="nopaddingcard">
+  <ion-card *ngIf="isAdmin()" class="baseCard">
     <ion-accordion-group>
       <ion-accordion>
         <ion-item slot="header">
-          <ion-label>Qr Codes List</ion-label>
+          <ion-label class="itemCenter">Qr Codes List</ion-label>
         </ion-item>
         <ion-item class="accordion-item" slot="content">
           <app-qrcode-settings></app-qrcode-settings>
@@ -99,7 +94,7 @@
   </ion-card>
 
   <!-- Launch for admin -->
-  <ion-card *ngIf="isAdmin()" class="basecard">
+  <ion-card *ngIf="isAdmin()" class="paddCard">
     <ion-button (click)="launchGame()" size="large" expand="block" color="primary">
       Launch Game !
     </ion-button>

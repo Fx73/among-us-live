@@ -1,5 +1,4 @@
-@mixin basecard{
-  padding: 1em;
+@mixin baseCard{
   text-align: center;
   margin: 0.4em;
   ion-card-title{
@@ -9,6 +8,11 @@
     }
 
 }
-.basecard{
-  @include basecard;
+.baseCard{
+  @include baseCard;
+}
+
+.paddCard{
+  @include baseCard;
+  padding: 1em;
 }
