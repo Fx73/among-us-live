@@ -1,3 +1,5 @@
+@import 'src/theme/cards.scss' ;
+
 .gameCode{
   margin: 2em;
   border: 1px solid #ccc;
@@ -25,5 +27,17 @@ ion-grid{
   padding: 0;
   ion-col{
     padding: 0;
+  }
+}
+
+.nopaddingcard{
+  @include basecard;
+  padding: 0px;
+  ion-accordion-group{
+    ion-accordion{
+      ion-item{
+        text-align: center;
+      }
+    }
   }
 }

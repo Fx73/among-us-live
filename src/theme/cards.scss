@@ -1,0 +1,14 @@
+@mixin basecard{
+  padding: 1em;
+  text-align: center;
+  margin: 0.4em;
+  ion-card-title{
+    margin-bottom: 0.2em;
+    padding-bottom: 0.4em;
+    border-bottom:  1px solid #ccc;
+    }
+
+}
+.basecard{
+  @include basecard;
+}

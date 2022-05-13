@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { LobbyPage } from './lobby.page';
 import { LobbyPageRoutingModule } from './lobby-routing.module';
 import { NgModule } from '@angular/core';
+import { QrcodeSettingsComponent } from './../game/qrcode-settings/qrcode-settings.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { NgModule } from '@angular/core';
     LobbyPageRoutingModule
 
   ],
-  declarations: [LobbyPage, GameSettingsComponent]
+  declarations: [LobbyPage, GameSettingsComponent, QrcodeSettingsComponent]
 })
 export class LobbyPageModule { }

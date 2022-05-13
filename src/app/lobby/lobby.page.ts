@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
+import { PlayerColor } from '../shared/player-colors';
 import { Router } from '@angular/router';
 import { config } from 'src/config';
 
@@ -13,10 +14,13 @@ import { config } from 'src/config';
 })
 export class LobbyPage implements OnInit {
   gameCode: string;
-  ready = false;
+  name: string;
+  color: string;
+  isNameLocked = false;
 
-  playerList: Array<{ name: string; ready: boolean }>;
-  equipmentList: Array<{ name: string; ready: boolean }>;
+  colors: Array<string>;
+
+  playerList: Array<{ name: string }>;
 
   private admin: boolean;
 
@@ -28,18 +32,12 @@ export class LobbyPage implements OnInit {
       this.admin = true;
       this.gameCode = this.makeid();
     }
+    this.colors = Object.keys(PlayerColor).map(s => s.toLowerCase());
     this.fakeInit();
   }
 
   isAdmin(): boolean {
     return this.admin;
-  }
-
-  isEveryoneReady(): boolean {
-    return (
-      this.playerList.every((player) => player.ready) &&
-      this.equipmentList.every((player) => player.ready)
-    );
   }
 
   copyCodeToClipboard() {
@@ -51,6 +49,10 @@ export class LobbyPage implements OnInit {
     document.body.removeChild(el);
   }
 
+  validName() {
+    this.isNameLocked = !this.isNameLocked;
+  }
+
   kickPlayer(playerName: string) {
     if (!this.admin) return;
     this.playerList = this.playerList.filter(
@@ -58,31 +60,11 @@ export class LobbyPage implements OnInit {
     );
   }
 
-  kickEquipment(playerName: string) {
-    if (!this.admin) return;
-    this.equipmentList = this.equipmentList.filter(
-      (player) => player.name !== playerName
-    );
-  }
-
-  fakeInit() {
-    this.playerList = [
-      { name: 'player1', ready: true },
-      { name: 'player2', ready: false },
-    ];
-    this.equipmentList = [
-      { name: 'equipement1', ready: false },
-      { name: 'equipement2', ready: true },
-    ];
-  }
 
   launchGame() {
     this.router.navigateByUrl('/Game/' + this.gameCode);
   }
 
-  getReady() {
-    this.ready = !this.ready;
-  }
 
   makeid(): string {
     length = config.gameCodeLength;
@@ -95,4 +77,13 @@ export class LobbyPage implements OnInit {
     }
     return result;
   }
+
+
+  fakeInit() {
+    this.playerList = [
+      { name: 'player1', },
+      { name: 'player2', },
+    ];
+  }
+
 }
