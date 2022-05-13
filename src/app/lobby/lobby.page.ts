@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
+import { LobbyService } from './../services/lobby.service';
 import { PlayerColor } from '../shared/player-colors';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { config } from 'src/config';
 
 /* eslint-disable curly */
@@ -12,28 +14,42 @@ import { config } from 'src/config';
   templateUrl: './lobby.page.html',
   styleUrls: ['./lobby.page.scss'],
 })
-export class LobbyPage implements OnInit {
+export class LobbyPage implements OnInit, OnDestroy {
+  colors = Object.keys(PlayerColor).map(s => s.toLowerCase());
+  subscriptions: Subscription = new Subscription();
+  playerList: Array<{ name: string }>;
+
   gameCode: string;
   name: string;
   color: string;
   isNameLocked = false;
 
-  colors: Array<string>;
-
-  playerList: Array<{ name: string }>;
-
   private admin: boolean;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private lobbyService: LobbyService) { }
 
   ngOnInit() {
     this.gameCode = this.activatedRoute.snapshot.paramMap.get('gameCode');
     if (this.gameCode == null) {
       this.admin = true;
       this.gameCode = this.makeid();
+      this.subscriptions.add(
+        this.lobbyService.codeLobbyResult$.subscribe((code) => { this.gameCode = code; })
+      );
+    } else {
+      this.lobbyService.joinLobby(this.gameCode);
     }
-    this.colors = Object.keys(PlayerColor).map(s => s.toLowerCase());
+
+    this.subscriptions.add(
+      this.lobbyService.playerListResult$.subscribe((list) => { this.playerList = list; })
+    );
+
     this.fakeInit();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+    this.lobbyService.sendLeave();
   }
 
   isAdmin(): boolean {
@@ -51,6 +67,7 @@ export class LobbyPage implements OnInit {
 
   validName() {
     this.isNameLocked = !this.isNameLocked;
+    this.lobbyService.sendName(this.name);
   }
 
   kickPlayer(playerName: string) {
@@ -62,10 +79,12 @@ export class LobbyPage implements OnInit {
 
 
   launchGame() {
+    this.lobbyService.startGame();
     this.router.navigateByUrl('/Game/' + this.gameCode);
   }
 
 
+  //TO REMOVE
   makeid(): string {
     length = config.gameCodeLength;
     let result = '';
@@ -78,7 +97,7 @@ export class LobbyPage implements OnInit {
     return result;
   }
 
-
+  //TO REMOVE
   fakeInit() {
     this.playerList = [
       { name: 'player1', },
