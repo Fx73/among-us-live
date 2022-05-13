@@ -4,7 +4,7 @@
 
 ![IM2AG](https://img.shields.io/badge/IM2AG-Seal%20of%20Quality-blue)
 [![DeepScan grade](https://deepscan.io/api/teams/17167/projects/20909/branches/584536/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=17167&pid=20909&bid=584536)
-![Website](https://img.shields.io/website?up_message=among-us-live-fe.firebaseapp.com&url=https%3A%2F%2Famong-us-live-fe.firebaseapp.com)
+[![Website](https://img.shields.io/website?up_message=among-us-live-fe.firebaseapp.com&url=https%3A%2F%2Famong-us-live-fe.firebaseapp.com)](https://among-us-live-fe.firebaseapp.com)
 
 <h2>Presentation</h2>
 
