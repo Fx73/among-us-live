@@ -56,8 +56,8 @@
     <ion-card-title>Players</ion-card-title>
     <ion-list>
       <ion-item *ngFor="let item of playerList">
-        <ion-label>{{item.name}}</ion-label>
-        <ion-button *ngIf="isAdmin()" (click)="kickPlayer(item.name)" class="bKick">
+        <ion-label>{{item}}</ion-label>
+        <ion-button *ngIf="isAdmin()" (click)="kickPlayer(item)" class="bKick">
           <ion-icon slot="icon-only" name="skull"></ion-icon>
         </ion-button>
       </ion-item>

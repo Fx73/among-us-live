@@ -8,6 +8,8 @@ import { stringEN } from 'src/strings';
 })
 export class AppComponent {
   static inGame = false;
+  static ws: WebSocket;
+
 
   // Strings
   menuTitle = stringEN['menu.title'];
@@ -23,7 +25,9 @@ export class AppComponent {
   ];
 
 
-  constructor() { }
+  constructor() {
+    AppComponent.ws = new WebSocket('ws://localhost:8080');
+  }
 
   getUser(): string {
     return 'User';

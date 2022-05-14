@@ -17,7 +17,7 @@ import { config } from 'src/config';
 export class LobbyPage implements OnInit, OnDestroy {
   colors = Object.keys(PlayerColor).map(s => s.toLowerCase());
   subscriptions: Subscription = new Subscription();
-  playerList: Array<{ name: string }>;
+  playerList: Array<string>;
 
   gameCode: string;
   name: string;
@@ -32,10 +32,10 @@ export class LobbyPage implements OnInit, OnDestroy {
     this.gameCode = this.activatedRoute.snapshot.paramMap.get('gameCode');
     if (this.gameCode == null) {
       this.admin = true;
-      this.gameCode = this.makeid();
       this.subscriptions.add(
         this.lobbyService.codeLobbyResult$.subscribe((code) => { this.gameCode = code; })
       );
+      this.lobbyService.createLobby();
     } else {
       this.lobbyService.joinLobby(this.gameCode);
     }
@@ -44,7 +44,6 @@ export class LobbyPage implements OnInit, OnDestroy {
       this.lobbyService.playerListResult$.subscribe((list) => { this.playerList = list; })
     );
 
-    this.fakeInit();
   }
 
   ngOnDestroy() {
@@ -71,10 +70,7 @@ export class LobbyPage implements OnInit, OnDestroy {
   }
 
   kickPlayer(playerName: string) {
-    if (!this.admin) return;
-    this.playerList = this.playerList.filter(
-      (player) => player.name !== playerName
-    );
+    this.lobbyService.kickPlayer(playerName);
   }
 
 
@@ -84,25 +80,5 @@ export class LobbyPage implements OnInit, OnDestroy {
   }
 
 
-  //TO REMOVE
-  makeid(): string {
-    length = config.gameCodeLength;
-    let result = '';
-    const characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
-
-  //TO REMOVE
-  fakeInit() {
-    this.playerList = [
-      { name: 'player1', },
-      { name: 'player2', },
-    ];
-  }
 
 }
