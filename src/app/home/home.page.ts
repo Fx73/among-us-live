@@ -27,7 +27,6 @@ export class HomePage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    AppComponent.inGame = false;
   }
 
 

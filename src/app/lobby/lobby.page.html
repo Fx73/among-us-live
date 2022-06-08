@@ -1,102 +1,138 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Administrator Lobby</ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-title>Administrator Lobby</ion-title>
+	</ion-toolbar>
 </ion-header>
 
+
+
+
+
+
 <ion-content>
-  <!-- Invitation Code -->
-  <ion-card class="paddCard">
-    <ion-card-title> Welcome to the game ! </ion-card-title>
-    <ion-card-subtitle>
-      Invite more people with your game code :
-    </ion-card-subtitle>
-    <ion-card class=" gameCode">
-      <ion-label color="secondary">{{gameCode}}</ion-label>
-      <ion-button (click)="copyCodeToClipboard()" color="secondary">
-        <ion-icon slot="icon-only" name="clipboard"></ion-icon>
-      </ion-button>
-    </ion-card>
-  </ion-card>
-
-  <!-- Player -->
-  <ion-card class="baseCard">
-    <ion-card-header>
-      <ion-card-title> Choose who you are ! </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-card class="baseCard">
-              <ion-input [readonly]="isNameLocked" placeholder="Pick up your name !" [(ngModel)]="name"></ion-input>
-              <ion-button [color]="isNameLocked?'secondary':'success'" (click)="validName()">
-                {{isNameLocked?'Change name':'Ok'}}
-              </ion-button>
-            </ion-card>
-            <ion-card class="baseCard">
-              <ion-select placeholder="Color" interface="popover" [(ngModel)]="color">
-                <ion-select-option *ngFor="let c of colors" [value]="c">{{c}}</ion-select-option>
-              </ion-select>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card class="baseCard" *ngIf="color">
-              <ion-img src="assets/IDs/AmongUsID_{{color}}.png"></ion-img>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Player List -->
-  <ion-card class="paddCard">
-    <ion-card-title>Players</ion-card-title>
-    <ion-list>
-      <ion-item *ngFor="let item of playerList">
-        <ion-label>{{item}}</ion-label>
-        <ion-button *ngIf="isAdmin()" (click)="kickPlayer(item)" class="bKick">
-          <ion-icon slot="icon-only" name="skull"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </ion-list>
-  </ion-card>
+	<!-- Invitation Code -->
+	<ion-card class="paddCard">
+		<ion-card-title>
+			Welcome to the game !
+		</ion-card-title>
+		<ion-card-subtitle>
+			Invite more people with your game code :
+		</ion-card-subtitle>
+		<ion-card class=" gameCode">
+			<ion-label color="secondary">{{gameCode}}</ion-label>
+			<ion-button (click)="copyCodeToClipboard()"
+				color="secondary">
+				<ion-icon slot="icon-only"
+					name="clipboard"></ion-icon>
+			</ion-button>
+		</ion-card>
+	</ion-card>
 
 
-  <!-- Settings for admin -->
-  <ion-card *ngIf="isAdmin()" class="baseCard">
-    <ion-accordion-group>
-      <ion-accordion>
-        <ion-item slot="header">
-          <ion-label class="itemCenter">Settings</ion-label>
-        </ion-item>
-        <ion-item class="accordion-item" slot="content">
-          <app-game-settings></app-game-settings>
-        </ion-item>
-      </ion-accordion>
-    </ion-accordion-group>
-  </ion-card>
+	<!-- Player -->
+	<ion-card class="baseCard">
+		<ion-card-header>
+			<ion-card-title>
+				Choose who you are !
+			</ion-card-title>
+		</ion-card-header>
+		<ion-card-content>
+			<ion-grid>
+				<ion-row>
+					<ion-col size="6">
+						<ion-card class="baseCard">
+							<ion-input [readonly]="isNameLocked"
+								[(ngModel)]="name"
+								placeholder="Pick up your name !"></ion-input>
+							<ion-button [color]="isNameLocked?'secondary':'success'"
+								(click)="validName()">
+								{{isNameLocked?'Change name':'Ok'}}
+							</ion-button>
+						</ion-card>
+						<ion-card class="baseCard">
+							<ion-select [(ngModel)]="color"
+								placeholder="Color"
+								interface="popover">
+								<ion-select-option *ngFor="let c of colors"
+									[value]="c">
+									{{c}}
+								</ion-select-option>
+							</ion-select>
+						</ion-card>
+					</ion-col>
+					<ion-col>
+						<ion-card *ngIf="color"
+							class="baseCard">
+							<ion-img src="assets/IDs/AmongUsID_{{color}}.png"></ion-img>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
 
-  <!-- Qr code list -->
-  <ion-card *ngIf="isAdmin()" class="baseCard">
-    <ion-accordion-group>
-      <ion-accordion>
-        <ion-item slot="header">
-          <ion-label class="itemCenter">Qr Codes List</ion-label>
-        </ion-item>
-        <ion-item class="accordion-item" slot="content">
-          <app-qrcode-settings></app-qrcode-settings>
-        </ion-item>
-      </ion-accordion>
-    </ion-accordion-group>
-  </ion-card>
 
-  <!-- Launch for admin -->
-  <ion-card *ngIf="isAdmin()" class="paddCard">
-    <ion-button (click)="launchGame()" size="large" expand="block" color="primary">
-      Launch Game !
-    </ion-button>
-  </ion-card>
+		</ion-card-content>
+	</ion-card>
+
+
+	<!-- Player List -->
+	<ion-card class="paddCard">
+		<ion-card-title>Players</ion-card-title>
+		<ion-list>
+			<ion-item *ngFor="let item of playerList">
+				<ion-label>{{item}}</ion-label>
+				<ion-button *ngIf="isAdmin()"
+					(click)="kickPlayer(item)"
+					class="bKick">
+					<ion-icon slot="icon-only"
+						name="skull"></ion-icon>
+				</ion-button>
+			</ion-item>
+		</ion-list>
+	</ion-card>
+
+
+	<!-- Settings for admin -->
+	<ion-card *ngIf="isAdmin()"
+		class="baseCard">
+		<ion-accordion-group>
+			<ion-accordion>
+				<ion-item slot="header">
+					<ion-label class="itemCenter">Settings</ion-label>
+				</ion-item>
+				<ion-item class="accordion-item"
+					slot="content">
+					<app-game-settings></app-game-settings>
+				</ion-item>
+			</ion-accordion>
+		</ion-accordion-group>
+	</ion-card>
+
+
+	<!-- Qr code list -->
+	<ion-card *ngIf="isAdmin()"
+		class="baseCard">
+		<ion-accordion-group>
+			<ion-accordion>
+				<ion-item slot="header">
+					<ion-label class="itemCenter">Qr Codes List</ion-label>
+				</ion-item>
+				<ion-item class="accordion-item"
+					slot="content">
+					<app-qrcode-settings></app-qrcode-settings>
+				</ion-item>
+			</ion-accordion>
+		</ion-accordion-group>
+	</ion-card>
+
+
+	<!-- Launch for admin -->
+	<ion-card *ngIf="isAdmin()"
+		class="paddCard">
+		<ion-button (click)="launchGame()"
+			size="large"
+			expand="block"
+			color="primary">
+			Launch Game !
+		</ion-button>
+	</ion-card>
 </ion-content>

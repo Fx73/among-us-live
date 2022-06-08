@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Player, PlayerColor } from 'src/app/shared/player';
 
 import { ActivatedRoute } from '@angular/router';
-import { LobbyService } from './../services/lobby.service';
-import { PlayerColor } from '../shared/player-colors';
+import { LobbyService } from 'src/app/services/lobby.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { config } from 'src/config';
 
 /* eslint-disable curly */
 
@@ -20,8 +19,8 @@ export class LobbyPage implements OnInit, OnDestroy {
   playerList: Array<string>;
 
   gameCode: string;
-  name: string;
-  color: string;
+  name: string = Player.pname;
+  color: string = Player.color;
   isNameLocked = false;
 
   private admin: boolean;
@@ -67,6 +66,7 @@ export class LobbyPage implements OnInit, OnDestroy {
   validName() {
     this.isNameLocked = !this.isNameLocked;
     this.lobbyService.sendName(this.name);
+    Player.pname = this.name;
   }
 
   kickPlayer(playerName: string) {

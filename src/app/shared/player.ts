@@ -1,3 +1,8 @@
+export abstract class Player {
+  static pname = 'Default';
+  static color: PlayerColor;
+}
+
 /* eslint-disable @typescript-eslint/naming-convention */
 export enum PlayerColor {
   BLACK = '#000000',

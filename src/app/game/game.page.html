@@ -1,9 +1,25 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>game</ion-title>
-  </ion-toolbar>
+	<ion-progress-bar value="0.5"></ion-progress-bar>
 </ion-header>
-
-<ion-content>
-
-</ion-content>
+<ion-menu contentId="main-content"
+	type="overlay">
+	<ion-content>
+		<ion-list>
+			<ion-list-header>{{gameCode}}</ion-list-header>
+			<ion-note>{{getUserName()}}</ion-note>
+			<ion-menu-toggle *ngFor="let p of appPages; let i = index"
+				auto-hide="false">
+				<ion-item *ngIf="p.active()"
+					(click)="onActionOnMenu(p.action)"
+					class="ion-no-padding"
+					button>
+					<ion-icon [ios]="p.icon + '-outline'"
+						[md]="p.icon + '-sharp'"
+						slot="start"></ion-icon>
+					<ion-label>{{ p.title }}</ion-label>
+				</ion-item>
+			</ion-menu-toggle>
+		</ion-list>
+	</ion-content>
+</ion-menu>
+<ion-content></ion-content>
