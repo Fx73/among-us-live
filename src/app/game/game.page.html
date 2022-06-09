@@ -22,4 +22,7 @@
 		</ion-list>
 	</ion-content>
 </ion-menu>
-<ion-content></ion-content>
+<ion-content>
+	<app-tasklist *ngIf="gameView === GameViews.tasklist"></app-tasklist>
+	<app-taskmap *ngIf="gameView === GameViews.taskmap"></app-taskmap>
+</ion-content>

@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
-import { GamePageRoutingModule } from './game-routing.module';
-
 import { GamePage } from './game.page';
+import { GamePageRoutingModule } from './game-routing.module';
+import { IonicModule } from '@ionic/angular';
+import { NgModule } from '@angular/core';
+import { TasklistComponent } from './tasklist/tasklist.component';
+import { TaskmapComponent } from './taskmap/taskmap.component';
 
 @NgModule({
   imports: [
@@ -15,6 +14,6 @@ import { GamePage } from './game.page';
     IonicModule,
     GamePageRoutingModule
   ],
-  declarations: [GamePage]
+  declarations: [GamePage, TasklistComponent, TaskmapComponent]
 })
-export class GamePageModule {}
+export class GamePageModule { }
