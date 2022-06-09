@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { AppPage } from './../../../e2e/src/app.po';
+import { GameViews } from '../shared/game-views';
 import { Player } from 'src/app/shared/player';
 
 @Component({
@@ -15,11 +15,11 @@ export class GamePage implements OnInit {
 
   gameCode: string;
   isInpostor: boolean;
-  gameView: GameViews = AppPage[0].action;
+  gameView: GameViews;
 
   // Menu
   public appPages = [
-    { title: 'Task List', action: GameViews.tasklist, icon: 'menu', active: () => true },
+    { title: 'Task List', action: GameViews.tasklist, icon: 'clipboard', active: () => true },
     { title: 'Map', action: GameViews.taskmap, icon: 'map', active: () => true },
     { title: 'Scan Task', action: GameViews.taskscan, icon: 'hammer', active: () => true },
     { title: 'Report', action: GameViews.report, icon: 'megaphone', active: () => true },
@@ -36,6 +36,7 @@ export class GamePage implements OnInit {
   }
 
   onActionOnMenu(action: GameViews) {
+    console.log('POUUTT');
     this.gameView = action;
   }
 
@@ -44,12 +45,4 @@ export class GamePage implements OnInit {
   }
 }
 
-enum GameViews {
-  tasklist,
-  taskmap,
-  taskscan,
-  report,
-  kill,
-  sabotage,
-  settings
-}
+
